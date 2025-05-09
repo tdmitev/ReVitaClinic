@@ -1,6 +1,7 @@
 package com.example.revitaclinic.dto;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public record DoctorDto(
@@ -11,5 +12,6 @@ public record DoctorDto(
         List<String> roles,
         String phone,
         String uniqueId,
-        boolean personal
+        boolean personal,
+        Set<SpecialtyDto> specialties    // ново поле
 ) {}
