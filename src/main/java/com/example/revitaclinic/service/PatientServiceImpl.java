@@ -36,7 +36,8 @@ public class PatientServiceImpl implements PatientService {
         this.doctorService  = doctorService;
     }
 
-    private Patient getEntity(UUID keycloakUserId) {
+    @Override
+    public Patient getEntity(UUID keycloakUserId) {
         return patientRepo.findByKeycloakUserId(keycloakUserId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Patient not found: " + keycloakUserId));
