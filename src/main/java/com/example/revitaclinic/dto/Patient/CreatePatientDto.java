@@ -1,4 +1,4 @@
-package com.example.revitaclinic.dto;
+package com.example.revitaclinic.dto.Patient;
 
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;

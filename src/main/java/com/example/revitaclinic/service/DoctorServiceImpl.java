@@ -1,6 +1,8 @@
 package com.example.revitaclinic.service;
 
-import com.example.revitaclinic.dto.*;
+import com.example.revitaclinic.dto.Doctor.CreateDoctorDto;
+import com.example.revitaclinic.dto.Doctor.DoctorDto;
+import com.example.revitaclinic.dto.Doctor.UpdateDoctorDto;
 import com.example.revitaclinic.exception.ResourceNotFoundException;
 import com.example.revitaclinic.mapper.DoctorMapper;
 import com.example.revitaclinic.model.AppUser;

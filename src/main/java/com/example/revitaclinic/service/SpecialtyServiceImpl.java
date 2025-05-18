@@ -1,11 +1,12 @@
 package com.example.revitaclinic.service;
 
-import com.example.revitaclinic.dto.*;
+import com.example.revitaclinic.dto.Specialty.CreateSpecialtyDto;
+import com.example.revitaclinic.dto.Specialty.SpecialtyDto;
+import com.example.revitaclinic.dto.Specialty.UpdateSpecialtyDto;
 import com.example.revitaclinic.exception.ResourceNotFoundException;
 import com.example.revitaclinic.mapper.SpecialtyMapper;
 import com.example.revitaclinic.model.Specialty;
 import com.example.revitaclinic.repository.SpecialtyRepository;
-import com.example.revitaclinic.service.SpecialtyService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

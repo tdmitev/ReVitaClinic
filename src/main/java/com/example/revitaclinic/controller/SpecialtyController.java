@@ -1,6 +1,8 @@
 package com.example.revitaclinic.controller;
 
-import com.example.revitaclinic.dto.*;
+import com.example.revitaclinic.dto.Specialty.CreateSpecialtyDto;
+import com.example.revitaclinic.dto.Specialty.SpecialtyDto;
+import com.example.revitaclinic.dto.Specialty.UpdateSpecialtyDto;
 import com.example.revitaclinic.service.SpecialtyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

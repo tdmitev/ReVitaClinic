@@ -1,14 +1,13 @@
 package com.example.revitaclinic.service;
 
-import com.example.revitaclinic.dto.CreateMedicationDto;
-import com.example.revitaclinic.dto.MedicationDto;
-import com.example.revitaclinic.dto.UpdateMedicationDto;
+import com.example.revitaclinic.dto.Medication.CreateMedicationDto;
+import com.example.revitaclinic.dto.Medication.MedicationDto;
+import com.example.revitaclinic.dto.Medication.UpdateMedicationDto;
 import com.example.revitaclinic.exception.ResourceNotFoundException;
 import com.example.revitaclinic.mapper.MedicationMapper;
 import com.example.revitaclinic.model.Diagnosis;
 import com.example.revitaclinic.model.Medication;
 import com.example.revitaclinic.repository.MedicationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

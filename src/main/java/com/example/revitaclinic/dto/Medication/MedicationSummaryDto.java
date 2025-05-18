@@ -1,4 +1,4 @@
-package com.example.revitaclinic.dto;
+package com.example.revitaclinic.dto.Medication;
 
 public record MedicationSummaryDto(
         Integer id,

@@ -1,9 +1,7 @@
 package com.example.revitaclinic.service;
 
-import com.example.revitaclinic.dto.DiagnosisDto;
-import com.example.revitaclinic.dto.MedicationDto;
-import com.example.revitaclinic.dto.UpdateDiagnosisDto;
-import com.example.revitaclinic.dto.UpdateMedicationDto;
+import com.example.revitaclinic.dto.Diagnosis.DiagnosisDto;
+import com.example.revitaclinic.dto.Medication.MedicationDto;
 import com.example.revitaclinic.exception.ResourceNotFoundException;
 import com.example.revitaclinic.mapper.DiagnosisMapper;
 import com.example.revitaclinic.mapper.MedicationMapper;
@@ -16,7 +14,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional

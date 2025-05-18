@@ -1,8 +1,8 @@
 package com.example.revitaclinic.service;
 
-import com.example.revitaclinic.dto.CreatePatientDto;
-import com.example.revitaclinic.dto.PatientDto;
-import com.example.revitaclinic.dto.UpdatePatientDto;
+import com.example.revitaclinic.dto.Patient.CreatePatientDto;
+import com.example.revitaclinic.dto.Patient.PatientDto;
+import com.example.revitaclinic.dto.Patient.UpdatePatientDto;
 
 import java.util.List;
 import java.util.UUID;

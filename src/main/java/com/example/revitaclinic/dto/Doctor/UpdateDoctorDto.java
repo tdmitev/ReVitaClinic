@@ -1,4 +1,4 @@
-package com.example.revitaclinic.dto;
+package com.example.revitaclinic.dto.Doctor;
 
 import jakarta.validation.constraints.Size;
 

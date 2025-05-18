@@ -1,6 +1,8 @@
 package com.example.revitaclinic.mapper;
 
-import com.example.revitaclinic.dto.*;
+import com.example.revitaclinic.dto.Doctor.CreateDoctorDto;
+import com.example.revitaclinic.dto.Doctor.DoctorDto;
+import com.example.revitaclinic.dto.Doctor.UpdateDoctorDto;
 import com.example.revitaclinic.model.Doctor;
 import com.example.revitaclinic.service.KeycloakService;
 import org.mapstruct.*;

@@ -1,4 +1,4 @@
-package com.example.revitaclinic.dto;
+package com.example.revitaclinic.dto.Patient;
 
 import java.time.LocalDate;
 import java.util.UUID;

@@ -1,4 +1,6 @@
-package com.example.revitaclinic.dto;
+package com.example.revitaclinic.dto.Doctor;
+
+import com.example.revitaclinic.dto.Specialty.SpecialtyDto;
 
 import java.util.List;
 import java.util.Set;

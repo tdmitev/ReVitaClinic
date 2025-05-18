@@ -1,6 +1,9 @@
 package com.example.revitaclinic.mapper;
 
-import com.example.revitaclinic.dto.*;
+import com.example.revitaclinic.dto.Diagnosis.CreateDiagnosisDto;
+import com.example.revitaclinic.dto.Diagnosis.DiagnosisDto;
+import com.example.revitaclinic.dto.Diagnosis.UpdateDiagnosisDto;
+import com.example.revitaclinic.dto.Medication.MedicationSummaryDto;
 import com.example.revitaclinic.model.Diagnosis;
 import org.mapstruct.*;
 import java.util.Set;

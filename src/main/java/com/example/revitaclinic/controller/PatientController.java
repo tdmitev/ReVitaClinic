@@ -1,7 +1,7 @@
 package com.example.revitaclinic.controller;
 
-import com.example.revitaclinic.dto.PatientDto;
-import com.example.revitaclinic.dto.UpdatePatientDto;
+import com.example.revitaclinic.dto.Patient.PatientDto;
+import com.example.revitaclinic.dto.Patient.UpdatePatientDto;
 import com.example.revitaclinic.service.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,6 @@
-package com.example.revitaclinic.dto;
+package com.example.revitaclinic.dto.Diagnosis;
+
+import com.example.revitaclinic.dto.Medication.MedicationSummaryDto;
 
 import java.util.Set;
 

@@ -1,6 +1,8 @@
 package com.example.revitaclinic.controller;
 
-import com.example.revitaclinic.dto.*;
+import com.example.revitaclinic.dto.Medication.CreateMedicationDto;
+import com.example.revitaclinic.dto.Medication.MedicationDto;
+import com.example.revitaclinic.dto.Medication.UpdateMedicationDto;
 import com.example.revitaclinic.service.MedicationService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

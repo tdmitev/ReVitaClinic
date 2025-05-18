@@ -1,4 +1,4 @@
-package com.example.revitaclinic.dto;
+package com.example.revitaclinic.dto.Specialty;
 
 import jakarta.validation.constraints.NotBlank;
 
