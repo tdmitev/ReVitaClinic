@@ -54,6 +54,8 @@ dependencies {
 	testImplementation 'com.h2database:h2'
 }
 
+//td_mitev@Todors-MacBook-Pro bin % ./kc.sh start-dev
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
