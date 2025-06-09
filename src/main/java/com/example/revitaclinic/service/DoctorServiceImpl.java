@@ -25,7 +25,7 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorMapper mapper;
     private final KeycloakService kc;
     private final AppUserService userService;
-    private final SpecialtyService specialtyService;    // <- ново
+    private final SpecialtyService specialtyService;
 
     public DoctorServiceImpl(DoctorRepository doctorRepo,
                              DoctorMapper mapper,
