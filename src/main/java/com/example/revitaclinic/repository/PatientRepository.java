@@ -12,6 +12,8 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
     Optional<Patient> findByKeycloakUserId(UUID keycloakUserId);
     boolean existsByKeycloakUserId(UUID keycloakUserId);
 
+    List<Patient> findByPersonalDoctor_KeycloakUserId(UUID doctorKeycloakUserId);
+
     @Query(value = "SELECT personal_doctor_id, COUNT(*) FROM revitaclinic.patient GROUP BY personal_doctor_id", nativeQuery = true)
     List<Object[]> countPatientsPerDoctor();
 }

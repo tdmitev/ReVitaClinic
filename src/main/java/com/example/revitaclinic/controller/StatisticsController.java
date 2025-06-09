@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/stats")
@@ -27,6 +28,11 @@ public class StatisticsController {
     @GetMapping("/patients-by-diagnosis/{id}")
     public List<PatientDto> patientsByDiagnosis(@PathVariable Integer id) {
         return service.patientsByDiagnosis(id);
+    }
+
+    @GetMapping("/patients-by-doctor/{id}")
+    public List<PatientDto> patientsByDoctor(@PathVariable UUID id) {
+        return service.patientsByDoctor(id);
     }
 
     @GetMapping("/most-common-diagnosis")

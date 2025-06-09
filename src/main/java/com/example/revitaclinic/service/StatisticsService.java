@@ -15,4 +15,5 @@ public interface StatisticsService {
     List<DoctorCountDto> consultationCountPerDoctor();
     Integer monthWithMostSickLeaves();
     DoctorDto doctorWithMostSickLeaves();
+    List<PatientDto> patientsByDoctor(UUID doctorKeycloakId);
 }

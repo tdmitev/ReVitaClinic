@@ -50,6 +50,13 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
+    public List<PatientDto> patientsByDoctor(UUID doctorKeycloakId) {
+        List<Patient> patients = patientRepo.findByPersonalDoctor_KeycloakUserId(doctorKeycloakId);
+        return patients.stream().map(patientMapper::toDto).toList();
+    }
+
+
+    @Override
     public DiagnosisDto mostCommonDiagnosis() {
         Optional<Integer> id = diagnosisRepo.mostCommonDiagnosisId();
         return id.map(diagnosisService::findById).orElse(null);
