@@ -59,17 +59,19 @@ public class ConsultationServiceImpl implements ConsultationService {
         c.setDiagnosis(diagnosisService.getEntity(dto.diagnosisId()));
         c.setNotes(dto.notes());
 
-        for (CreateConsultationMedicationDto m : dto.medicationEntries()) {
-            ConsultationMedication cm = new ConsultationMedication();
-            cm.setId(new ConsultationMedicationId());
-            cm.getId().setConsultationId(null);
-            cm.getId().setMedicationId(m.medicationId());
-            cm.setConsultation(c);
-            cm.setMedication(medicationService.getEntity(m.medicationId()));
-            cm.setDosage(m.dosage());
-            cm.setFrequency(m.frequency());
-            cm.setDuration(m.duration());
-            c.getMedicationEntries().add(cm);
+        if (dto.medicationEntries() != null) {
+            for (CreateConsultationMedicationDto m : dto.medicationEntries()) {
+                ConsultationMedication cm = new ConsultationMedication();
+                cm.setId(new ConsultationMedicationId());
+                cm.getId().setConsultationId(null);
+                cm.getId().setMedicationId(m.medicationId());
+                cm.setConsultation(c);
+                cm.setMedication(medicationService.getEntity(m.medicationId()));
+                cm.setDosage(m.dosage());
+                cm.setFrequency(m.frequency());
+                cm.setDuration(m.duration());
+                c.getMedicationEntries().add(cm);
+            }
         }
 
         if (dto.sickLeave() != null) {
@@ -116,15 +118,17 @@ public class ConsultationServiceImpl implements ConsultationService {
         c.setNotes(dto.notes());
 
         c.getMedicationEntries().clear();
-        for (CreateConsultationMedicationDto m : dto.medicationEntries()) {
-            ConsultationMedication cm = new ConsultationMedication();
-            cm.setId(new ConsultationMedicationId(id, m.medicationId()));
-            cm.setConsultation(c);
-            cm.setMedication(medicationService.getEntity(m.medicationId()));
-            cm.setDosage(m.dosage());
-            cm.setFrequency(m.frequency());
-            cm.setDuration(m.duration());
-            c.getMedicationEntries().add(cm);
+        if (dto.medicationEntries() != null) {
+            for (CreateConsultationMedicationDto m : dto.medicationEntries()) {
+                ConsultationMedication cm = new ConsultationMedication();
+                cm.setId(new ConsultationMedicationId(id, m.medicationId()));
+                cm.setConsultation(c);
+                cm.setMedication(medicationService.getEntity(m.medicationId()));
+                cm.setDosage(m.dosage());
+                cm.setFrequency(m.frequency());
+                cm.setDuration(m.duration());
+                c.getMedicationEntries().add(cm);
+            }
         }
 
         if (dto.sickLeave() != null) {

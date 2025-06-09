@@ -1,8 +1,10 @@
 package com.example.revitaclinic.dto.SickLeave;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public record CreateSickLeaveDto(
-        LocalDate startDate,
-        Integer numberOfDays
+        @NotNull LocalDate startDate,
+        @NotNull Integer numberOfDays
 ) {}
