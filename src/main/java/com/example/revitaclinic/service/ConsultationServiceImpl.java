@@ -8,12 +8,15 @@ import com.example.revitaclinic.exception.ResourceNotFoundException;
 import com.example.revitaclinic.mapper.ConsultationMapper;
 import com.example.revitaclinic.model.*;
 import com.example.revitaclinic.repository.ConsultationRepository;
+import com.example.revitaclinic.config.SecurityUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -104,8 +107,38 @@ public class ConsultationServiceImpl implements ConsultationService {
     }
 
     @Override
+    public List<ConsultationDto> findByPatient(UUID patientId) {
+        return repo.findByPatient_KeycloakUserId(patientId)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<ConsultationDto> findByDoctor(UUID doctorId) {
+        return repo.findByDoctor_KeycloakUserId(doctorId)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<ConsultationDto> findByPeriod(String start, String end) {
+        LocalDateTime s = LocalDateTime.parse(start);
+        LocalDateTime e = LocalDateTime.parse(end);
+        return repo.findByDateBetween(s, e)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
+    @Override
     public ConsultationDto update(Integer id, UpdateConsultationDto dto) {
         Consultation c = getEntity(id);
+        UUID currentDoctor = SecurityUtils.getCurrentUserId();
+        if (!c.getDoctor().getKeycloakUserId().equals(currentDoctor)) {
+            throw new IllegalArgumentException("Doctor can update only own consultations");
+        }
         c.setDate(dto.date());
 
         Doctor doc = doctorService.getEntity(dto.doctorId());
@@ -152,7 +185,12 @@ public class ConsultationServiceImpl implements ConsultationService {
 
     @Override
     public void delete(Integer id) {
-        repo.delete(getEntity(id));
+        Consultation c = getEntity(id);
+        UUID currentDoctor = SecurityUtils.getCurrentUserId();
+        if (!c.getDoctor().getKeycloakUserId().equals(currentDoctor)) {
+            throw new IllegalArgumentException("Doctor can delete only own consultations");
+        }
+        repo.delete(c);
     }
 
     @Override
