@@ -45,6 +45,10 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDto create(CreatePatientDto dto) {
+        if (dto.healthInsuranceLastPayment() == null ||
+                dto.healthInsuranceLastPayment().isBefore(java.time.LocalDate.now().minusMonths(6))) {
+            throw new IllegalArgumentException("Health insurance not paid in last 6 months");
+        }
         kc.assignRealmRole(dto.keycloakUserId(), "PATIENT");
         AppUser user = userService.upsertUser(dto.keycloakUserId(), dto.phone());
         Patient p = mapper.toEntity(dto);
@@ -84,6 +88,10 @@ public class PatientServiceImpl implements PatientService {
             Doctor neu = doctorService.getEntity(dto.personalDoctorId());
             neu.setPersonal(true);
             p.setPersonalDoctor(neu);
+        }
+        if (dto.healthInsuranceLastPayment() != null &&
+                dto.healthInsuranceLastPayment().isBefore(java.time.LocalDate.now().minusMonths(6))) {
+            throw new IllegalArgumentException("Health insurance not paid in last 6 months");
         }
         mapper.updateEntityFromDto(dto, p);
 
