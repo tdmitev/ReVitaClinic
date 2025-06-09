@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@PreAuthorize("hasRole('ADMIN') or hasRole('DOCTOR')")
 @RequestMapping("/api/consultations")
 @Validated
 public class ConsultationController {
@@ -28,6 +27,7 @@ public class ConsultationController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<ConsultationDto> create(
             @RequestBody @Valid CreateConsultationDto dto
     ) {
@@ -36,11 +36,13 @@ public class ConsultationController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<ConsultationDto> getById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<List<ConsultationDto>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
@@ -70,6 +72,7 @@ public class ConsultationController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<ConsultationDto> update(
             @PathVariable Integer id,
             @RequestBody @Valid UpdateConsultationDto dto
@@ -78,6 +81,7 @@ public class ConsultationController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();

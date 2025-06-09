@@ -14,7 +14,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/patients")
-@PreAuthorize("hasAnyRole('DOCTOR','ADMIN')")
 public class PatientController {
 
     private final PatientService patientService;
@@ -24,6 +23,7 @@ public class PatientController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<List<PatientDto>> listAll() {
         List<PatientDto> all = patientService.findAll();
         return ResponseEntity.ok(all);
@@ -44,12 +44,14 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<PatientDto> getOne(@PathVariable UUID id) {
         PatientDto dto = patientService.findById(id);
         return ResponseEntity.ok(dto);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<PatientDto> update(
             @PathVariable UUID id,
             @Valid @RequestBody UpdatePatientDto dto) {
@@ -58,6 +60,7 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
