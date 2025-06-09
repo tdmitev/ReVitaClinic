@@ -133,6 +133,16 @@ public class ConsultationServiceImpl implements ConsultationService {
     }
 
     @Override
+    public List<ConsultationDto> findByDoctorAndPeriod(UUID doctorId, String start, String end) {
+        LocalDateTime s = LocalDateTime.parse(start);
+        LocalDateTime e = LocalDateTime.parse(end);
+        return repo.findByDoctor_KeycloakUserIdAndDateBetween(doctorId, s, e)
+                .stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
+    @Override
     public ConsultationDto update(Integer id, UpdateConsultationDto dto) {
         Consultation c = getEntity(id);
         UUID currentDoctor = SecurityUtils.getCurrentUserId();

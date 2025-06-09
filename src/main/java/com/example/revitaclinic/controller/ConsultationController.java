@@ -71,6 +71,14 @@ public class ConsultationController {
         return ResponseEntity.ok(service.findByPeriod(start, end));
     }
 
+    @GetMapping("/by-doctor/{doctorId}/period")
+    public ResponseEntity<List<ConsultationDto>> getByDoctorAndPeriod(
+            @PathVariable UUID doctorId,
+            @RequestParam("start") String start,
+            @RequestParam("end") String end) {
+        return ResponseEntity.ok(service.findByDoctorAndPeriod(doctorId, start, end));
+    }
+
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<ConsultationDto> update(

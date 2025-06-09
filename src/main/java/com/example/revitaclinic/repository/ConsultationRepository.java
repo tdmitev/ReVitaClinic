@@ -13,6 +13,7 @@ public interface ConsultationRepository extends JpaRepository<Consultation, Inte
     List<Consultation> findByPatient_KeycloakUserId(UUID patientId);
     List<Consultation> findByDoctor_KeycloakUserId(UUID doctorId);
     List<Consultation> findByDateBetween(LocalDateTime start, LocalDateTime end);
+    List<Consultation> findByDoctor_KeycloakUserIdAndDateBetween(UUID doctorId, LocalDateTime start, LocalDateTime end);
 
     @Query("select c.patient from Consultation c where c.diagnosis.id = :diagnosisId")
     List<Patient> findPatientsByDiagnosis(Integer diagnosisId);

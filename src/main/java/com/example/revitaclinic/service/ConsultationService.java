@@ -15,6 +15,7 @@ public interface ConsultationService {
     List<ConsultationDto> findByPatient(UUID patientId);
     List<ConsultationDto> findByDoctor(UUID doctorId);
     List<ConsultationDto> findByPeriod(String start, String end);
+    List<ConsultationDto> findByDoctorAndPeriod(UUID doctorId, String start, String end);
     ConsultationDto update(Integer id, UpdateConsultationDto dto);
     void delete(Integer id);
     Consultation getEntity(Integer id);
