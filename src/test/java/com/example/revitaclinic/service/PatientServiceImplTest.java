@@ -11,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.test.context.support.WithMockUser;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import com.example.revitaclinic.dto.Patient.CreatePatientDto;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -56,5 +58,18 @@ class PatientServiceImplTest {
         given(patientRepository.findByKeycloakUserId(id)).willReturn(Optional.of(patient));
         Patient result = patientService.getEntity(id);
         assertThat(result).isEqualTo(patient);
+    }
+
+    @Test
+    void create_withOldInsuranceDate_throws() {
+        CreatePatientDto dto = new CreatePatientDto(
+                UUID.randomUUID(),
+                "0888",
+                "0123456789",
+                LocalDate.now().minusMonths(7),
+                UUID.randomUUID()
+        );
+        assertThatThrownBy(() -> patientService.create(dto))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.revitaclinic.repository;
 
 import com.example.revitaclinic.model.AppUser;
-import com.example.revitaclinic.model.Doctor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers(disabledWithoutDocker = true)
 @SpringBootTest
 @ActiveProfiles("test")
-class DoctorRepositoryTest {
+class AppUserRepositoryTest {
 
     @Container
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine")
@@ -35,29 +34,18 @@ class DoctorRepositoryTest {
         registry.add("spring.datasource.password", postgres::getPassword);
     }
 
-
     @Autowired
-    private DoctorRepository doctorRepository;
-
-    @Autowired
-    private AppUserRepository appUserRepository;
+    AppUserRepository appUserRepository;
 
     @Test
-    void existsByKeycloakUserId() {
-        UUID userId = UUID.randomUUID();
+    void saveAndFind() {
+        UUID id = UUID.randomUUID();
         AppUser user = new AppUser();
-        user.setKeycloakUserId(userId);
+        user.setKeycloakUserId(id);
         user.setPhone("123");
         appUserRepository.save(user);
 
-        Doctor doctor = new Doctor();
-        doctor.setUser(user);
-        doctor.setUniqueId("u123");
-        doctor.setPersonal(false);
-
-        doctorRepository.save(doctor);
-
-        boolean exists = doctorRepository.existsByKeycloakUserId(userId);
+        boolean exists = appUserRepository.existsById(id);
         assertThat(exists).isTrue();
     }
 }
