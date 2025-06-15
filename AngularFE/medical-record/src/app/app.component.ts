@@ -19,10 +19,10 @@ export class AppComponent {
   }
 
   login() {
-    this.keycloak.login();
+    this.keycloak.login().then(() => this.loggedIn = true);
   }
 
   logout() {
-    this.keycloak.logout(window.location.origin);
+    this.keycloak.logout(window.location.origin).then(() => this.loggedIn = false);
   }
 }
