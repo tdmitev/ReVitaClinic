@@ -18,9 +18,9 @@ public interface ConsultationRepository extends JpaRepository<Consultation, Inte
     @Query("select c.patient from Consultation c where c.diagnosis.id = :diagnosisId")
     List<Patient> findPatientsByDiagnosis(Integer diagnosisId);
 
-    @Query(value = "SELECT doctor_id, COUNT(*) FROM revitaclinic.consultation GROUP BY doctor_id", nativeQuery = true)
+    @Query("SELECT c.doctor.keycloakUserId, COUNT(c) FROM Consultation c GROUP BY c.doctor.keycloakUserId")
     List<Object[]> countConsultationsPerDoctor();
 
-    @Query(value = "SELECT c.doctor_id FROM revitaclinic.consultation c JOIN revitaclinic.sick_leave sl ON c.id = sl.consultation_id GROUP BY c.doctor_id ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
-    UUID doctorWithMostSickLeaves();
+    @Query("SELECT c.doctor.keycloakUserId FROM Consultation c JOIN c.sickLeave sl GROUP BY c.doctor.keycloakUserId ORDER BY COUNT(sl) DESC")
+    List<UUID> doctorWithMostSickLeaves(org.springframework.data.domain.Pageable pageable);
 }

@@ -2,7 +2,6 @@ package com.example.revitaclinic.integration_tests;
 
 import com.example.revitaclinic.dto.Doctor.CreateDoctorDto;
 import com.example.revitaclinic.dto.Patient.CreatePatientDto;
-import com.example.revitaclinic.model.AppUser;
 import com.example.revitaclinic.repository.AppUserRepository;
 import com.example.revitaclinic.repository.DoctorRepository;
 import com.example.revitaclinic.repository.PatientRepository;

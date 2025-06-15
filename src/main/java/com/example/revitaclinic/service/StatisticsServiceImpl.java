@@ -93,8 +93,9 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public DoctorDto doctorWithMostSickLeaves() {
-        UUID id = consultationRepo.doctorWithMostSickLeaves();
-        if (id == null) return null;
+        java.util.List<java.util.UUID> ids = consultationRepo.doctorWithMostSickLeaves(org.springframework.data.domain.PageRequest.of(0,1));
+        if (ids.isEmpty()) return null;
+        java.util.UUID id = ids.get(0);
         return doctorService.findById(id);
     }
 }

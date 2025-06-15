@@ -14,6 +14,6 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
     List<Patient> findByPersonalDoctor_KeycloakUserId(UUID doctorKeycloakUserId);
 
-    @Query(value = "SELECT personal_doctor_id, COUNT(*) FROM revitaclinic.patient GROUP BY personal_doctor_id", nativeQuery = true)
+    @Query("SELECT p.personalDoctor.keycloakUserId, COUNT(p) FROM Patient p GROUP BY p.personalDoctor.keycloakUserId")
     List<Object[]> countPatientsPerDoctor();
 }
